@@ -1,0 +1,19 @@
+# Sensitive files
+encrypted_seed.txt
+decrypted_seed.txt
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Tools
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# Optional helper scripts you should not commit
+decrypt_seed.py
+generate_keys.py
+request_seed.py

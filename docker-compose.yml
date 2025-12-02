@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+  app:
+    container_name: gpp-task2-app
+    
+    # Build context = current folder
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    # Port mapping
+    ports:
+      - "8081:8080"
+
+    # Named volumes mounted to /data and /cron
+    volumes:
+      - seed-data:/data
+      - cron-output:/cron
+
+      # Mount key files (read-only)
+      - ./student_private.pem:/app/student_private.pem:ro
+      - ./student_public.pem:/app/student_public.pem:ro
+      - ./instructor_public.pem:/app/instructor_public.pem:ro
+
+    # Environment variables
+    environment:
+      TZ: "UTC"
+
+    # Restart policy
+    restart: unless-stopped
+
+
+# Named volumes
+volumes:
+  seed-data:
+  cron-output:
